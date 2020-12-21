@@ -1,0 +1,11 @@
+{
+  "name": "ALTCE",
+  "version": "1.0.0",
+  "main": "src/backend/server.js",
+  "repository": "https://github.com/Aimee-MacDonald/ALTCE.git",
+  "author": "Aimee MacDonald <aimeelmacdonald@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/backend/server"
+  }
+}
