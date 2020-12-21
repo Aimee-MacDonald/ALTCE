@@ -7,5 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/backend/server"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
   }
 }
