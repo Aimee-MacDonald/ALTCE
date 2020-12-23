@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Index = () => (
-  <h1>ALTCE</h1>
-);
+import ListManager from "./components/ListManager/ListManager";
 
-ReactDOM.render(<Index />, document.getElementById("ALTCE"));
+ReactDOM.render(<ListManager />, document.getElementById("ALTCE"));
