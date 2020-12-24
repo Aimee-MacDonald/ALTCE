@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./ListManager.sass";
+
 export default class ListManager extends React.Component{
   constructor(props){
     super(props);
@@ -13,7 +15,7 @@ export default class ListManager extends React.Component{
 
   render(){
     return(
-      <div>
+      <div id="ListManager">
         <ul>
           {this.state.items && this.state.items.map((item, index) => (
             <li key={`item_${index}`}>
