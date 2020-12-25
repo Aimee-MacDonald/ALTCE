@@ -1,0 +1,28 @@
+#MainLayout
+  position: relative
+  width: 100vw
+  height: 100vh
+  overflow: hidden
+  display: flex
+  flex-flow: nowrap column
+  header
+    position: fixed
+    z-index: 2
+    width: 100%
+    height: 4rem
+  nav
+    width: 100%
+    height: 0
+    position: fixed
+    display: flex
+    flex-flow: nowrap row
+    justify-content: space-between
+    z-index: 1
+    aside
+      width: 15rem
+      height: 100vh
+  article
+    position: fixed
+    width: 100%
+    height: 100%
+    z-index: -1

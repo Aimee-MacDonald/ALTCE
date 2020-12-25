@@ -4,6 +4,6 @@ import ReactDOM from "react-dom";
 import "normalize.css";
 import "./main.sass";
 
-import ListManager from "./components/ListManager/ListManager";
+import MainLayout from "./components/MainLayout/MainLayout";
 
-ReactDOM.render(<ListManager />, document.getElementById("ALTCE"));
+ReactDOM.render(<MainLayout />, document.getElementById("ALTCE"));
