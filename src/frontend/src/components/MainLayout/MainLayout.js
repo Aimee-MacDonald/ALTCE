@@ -4,6 +4,7 @@ import "./MainLayout.sass";
 
 import List from "./List/List";
 import ListItemDetails from "./ListItemDetails/ListItemDetails";
+import Header from "./Header/Header";
 
 export default class MainLayout extends React.Component{
   constructor(props){
@@ -31,7 +32,9 @@ export default class MainLayout extends React.Component{
   render(){
     return(
       <div id="MainLayout">
-        <header></header>
+        <header>
+          <Header />
+        </header>
 
         <nav>
           <aside>
