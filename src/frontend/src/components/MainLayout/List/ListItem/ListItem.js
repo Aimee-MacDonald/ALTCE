@@ -3,9 +3,9 @@ import React from "react";
 import "./ListItem.sass";
 
 const ListItem = props => (
-  <li id="ListItem">
-    <p>{props.item}</p>
-    <button onClick={() => props.removeListItem(props.item)}></button>
+  <li id="ListItem" onClick={props.showListItemDetails}>
+    <p>{props.item.title}</p>
+    <button onClick={() => props.removeListItem(props.item.title)}></button>
   </li>
 );
 

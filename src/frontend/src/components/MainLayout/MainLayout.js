@@ -10,11 +10,22 @@ export default class MainLayout extends React.Component{
     super(props);
 
     this.state = {
-      listItems: []
+      listItems: [],
+      listItemDetails: {
+        active: false,
+        title: "",
+        description: "",
+        rank: 0,
+        time: 0,
+        difficulty: 0,
+        urgency: 0,
+        children: []
+      }
     };
 
     this.addListItem = this.addListItem.bind(this);
     this.removeListItem = this.removeListItem.bind(this);
+    this.showListItemDetails = this.showListItemDetails.bind(this);
   }
 
   render(){
@@ -28,6 +39,7 @@ export default class MainLayout extends React.Component{
               listItems={this.state.listItems}
               addListItem={this.addListItem}
               removeListItem={this.removeListItem}
+              showListItemDetails={this.showListItemDetails}
             />
           </aside>
 
@@ -35,7 +47,7 @@ export default class MainLayout extends React.Component{
         </nav>
 
         <article>
-          <ListItemDetails />
+          {this.state.listItemDetails.active && <ListItemDetails details={this.state.listItemDetails} />}
         </article>
       </div>
     );
@@ -64,7 +76,16 @@ export default class MainLayout extends React.Component{
   addListItem(e){
     e.preventDefault();
 
-    const newItem = e.target.newItem.value;
+    const newItem = {
+      title: e.target.newItem.value,
+      description: "",
+      rank: 0,
+      time: 0,
+      difficulty: 0,
+      urgency: 0,
+      children: []
+    };
+
     e.target.newItem.value = "";
 
     if(!!newItem && this.state.listItems.indexOf(newItem) === -1){
@@ -73,6 +94,39 @@ export default class MainLayout extends React.Component{
   }
 
   removeListItem(itemName){
-    this.setState(prevState => ({listItems: prevState.listItems.filter(item => item !== itemName)}));
+    this.setState(prevState => ({listItems: prevState.listItems.filter(item => item.title !== itemName)}));
+  }
+
+  showListItemDetails(e){
+    let detailedItem = e.target.tagName;
+
+    switch(detailedItem){
+      case "LI":
+        detailedItem = e.target.childNodes[0].innerText;
+        break;
+      
+      case "P":
+        detailedItem = e.target.innerText;
+        break;
+
+      default:
+        detailedItem = "";
+        break;
+    }
+
+    if(detailedItem){
+      const details = {
+        active: true,
+        title: detailedItem,
+        description: "",
+        rank: 0,
+        time: 0,
+        difficulty: 0,
+        urgency: 0,
+        children: []
+      }
+
+      this.setState(() => ({listItemDetails: details}));
+    }
   }
 }

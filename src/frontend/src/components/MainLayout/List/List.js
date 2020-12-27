@@ -12,6 +12,7 @@ const List = props => (
           key={`item_${index}`}
           item={item}
           removeListItem={props.removeListItem}
+          showListItemDetails={props.showListItemDetails}
         />
       ))}
     </ul>

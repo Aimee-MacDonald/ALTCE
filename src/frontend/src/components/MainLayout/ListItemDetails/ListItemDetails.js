@@ -2,32 +2,32 @@ import React from "react";
 
 import "./ListItemDetails.sass";
 
-const ListItemDetails = () => (
+const ListItemDetails = props => (
   <div id="ListItemDetails">
     <div id="details">
       <div id="description">
-        <h1>Title</h1>
-        <p>Description</p>
+        <h1>{props.details.title}</h1>
+        <p>{props.details.description}</p>
       </div>
       <div id="stats">
-        <div class="stat_input">
+        <div className="stat_input">
           <label>Rank:</label>
-          <input />
+          <input defaultValue={props.details.rank} />
         </div>
         
-        <div class="stat_input">
+        <div className="stat_input">
           <label>Time:</label>
-          <input />
+          <input defaultValue={props.details.time} />
         </div>
 
-        <div class="stat_input">
+        <div className="stat_input">
           <label>Difficulty:</label>
-          <input />
+          <input defaultValue={props.details.difficulty} />
         </div>
 
-        <div class="stat_input">
+        <div className="stat_input">
           <label>Urgency:</label>
-          <input />
+          <input defaultValue={props.details.urgency} />
         </div>
       </div>
     </div>
