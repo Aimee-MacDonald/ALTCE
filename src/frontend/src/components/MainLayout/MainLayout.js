@@ -3,6 +3,7 @@ import React from "react";
 import "./MainLayout.sass";
 
 import List from "./List/List";
+import ListItemDetails from "./ListItemDetails/ListItemDetails";
 
 export default class MainLayout extends React.Component{
   constructor(props){
@@ -33,7 +34,9 @@ export default class MainLayout extends React.Component{
           <aside></aside>
         </nav>
 
-        <article></article>
+        <article>
+          <ListItemDetails />
+        </article>
       </div>
     );
   }

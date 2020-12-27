@@ -1,4 +1,7 @@
+@import "../../vars"
+
 #MainLayout
+  background-color: lime
   position: relative
   width: 100vw
   height: 100vh
@@ -7,7 +10,7 @@
   flex-flow: nowrap column
   header
     position: fixed
-    z-index: 2
+    z-index: 3
     width: 100%
     height: 4rem
   nav
@@ -17,12 +20,18 @@
     display: flex
     flex-flow: nowrap row
     justify-content: space-between
-    z-index: 1
+    z-index: 2
     aside
       width: 15rem
       height: 100vh
+      background-color: lime
   article
+    background-color: $amaranth
     position: fixed
     width: 100%
     height: 100%
-    z-index: -1
+    z-index: 1
+    display: flex
+    flex-flow: nowrap row
+    justify-content: center
+    align-items: center
