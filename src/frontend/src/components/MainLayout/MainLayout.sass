@@ -21,8 +21,12 @@
     justify-content: space-between
     z-index: 2
     aside
-      width: 15rem
       height: 100vh
+    .open_aside
+      width: 15rem
+    .closed_aside
+      width: 0
+      overflow: hidden
   article
     background-color: $amaranth
     position: fixed
@@ -31,5 +35,41 @@
     z-index: 1
     display: flex
     flex-flow: nowrap row
-    justify-content: center
+    justify-content: space-between
     align-items: center
+    .toggle_left_closed
+      background-color: $maya_blue
+      width: 1rem
+      height: 1rem
+      border: none
+      border-radius: 50%
+      align-self: flex-start
+      margin-top: 4.2rem
+      margin-left: 0.2rem
+    .toggle_left_open
+      background-color: $maya_blue
+      width: 1rem
+      height: 1rem
+      border: none
+      border-radius: 50%
+      align-self: flex-start
+      margin-top: 4.2rem
+      margin-left: 15.2rem
+    .toggle_right_closed
+      background-color: $maya_blue
+      width: 1rem
+      height: 1rem
+      border: none
+      border-radius: 50%
+      align-self: flex-start
+      margin-top: 4.2rem
+      margin-right: 0.2rem
+    .toggle_right_open
+      background-color: $maya_blue
+      width: 1rem
+      height: 1rem
+      border: none
+      border-radius: 50%
+      align-self: flex-start
+      margin-top: 4.2rem
+      margin-right: 15.2rem

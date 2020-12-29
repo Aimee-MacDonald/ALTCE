@@ -12,6 +12,8 @@ export default class MainLayout extends React.Component{
     super(props);
 
     this.state = {
+      leftAsideOpen: false,
+      rightAsideOpen: false,
       listItems: [],
       listItemDetails: {
         active: false,
@@ -62,7 +64,7 @@ export default class MainLayout extends React.Component{
         </header>
 
         <nav>
-          <aside>
+          <aside className={this.state.leftAsideOpen ? "open_aside" : "closed_aside"}>
             <List
               listItems={this.state.listItems}
               addListItem={this.addListItem}
@@ -71,7 +73,7 @@ export default class MainLayout extends React.Component{
             />
           </aside>
 
-          <aside>
+          <aside className={this.state.rightAsideOpen ? "open_aside" : "closed_aside"}>
             <Schedule
               schedule={this.state.schedule}
              />
@@ -79,7 +81,9 @@ export default class MainLayout extends React.Component{
         </nav>
 
         <article>
+          <button className={this.state.leftAsideOpen ? "toggle_left_open" : "toggle_left_closed"} onClick={() => this.toggleAside("left")}></button>
           {this.state.listItemDetails.active && <ListItemDetails details={this.state.listItemDetails} />}
+          <button className={this.state.rightAsideOpen ? "toggle_right_open" : "toggle_right_closed"} onClick={() => this.toggleAside("right")}></button>
         </article>
       </div>
     );
@@ -159,6 +163,14 @@ export default class MainLayout extends React.Component{
       }
 
       this.setState(() => ({listItemDetails: details}));
+    }
+  }
+
+  toggleAside(side){
+    if(side === "left"){
+      this.setState(prevState => ({leftAsideOpen: !prevState.leftAsideOpen}));
+    } else if(side === "right"){
+      this.setState(prevState => ({rightAsideOpen: !prevState.rightAsideOpen}));
     }
   }
 }
