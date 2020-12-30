@@ -9,6 +9,7 @@ const ListItemDetails = props => (
         <h1>{props.details.title}</h1>
         <p>{props.details.description}</p>
       </div>
+
       <div id="stats">
         <div className="stat_input">
           <label>Rank:</label>
@@ -31,9 +32,20 @@ const ListItemDetails = props => (
         </div>
       </div>
     </div>
-    <ul>
-      <li>Child One</li>
-    </ul>
+
+    <div>
+      <form onSubmit={e => props.addListItemChild(e, props.details.title)}>
+        <label htmlFor="childTitle">Add Child</label>
+        <input id="childTitle" />
+        <button>+</button>
+      </form>
+
+      <ul>
+        {props.details.children && props.details.children.map((child, index) => (
+          <li key={`child_${index}`}>{child}</li>
+        ))}
+      </ul>
+    </div>
   </div>
 );
 

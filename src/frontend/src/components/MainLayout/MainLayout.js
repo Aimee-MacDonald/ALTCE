@@ -54,6 +54,7 @@ export default class MainLayout extends React.Component{
     this.addListItem = this.addListItem.bind(this);
     this.removeListItem = this.removeListItem.bind(this);
     this.showListItemDetails = this.showListItemDetails.bind(this);
+    this.addListItemChild = this.addListItemChild.bind(this);
   }
 
   render(){
@@ -82,7 +83,12 @@ export default class MainLayout extends React.Component{
 
         <article>
           <button className={this.state.leftAsideOpen ? "toggle_left_open" : "toggle_left_closed"} onClick={() => this.toggleAside("left")}></button>
-          {this.state.listItemDetails.active && <ListItemDetails details={this.state.listItemDetails} />}
+
+          {this.state.listItemDetails.active && <ListItemDetails
+            details={this.state.listItemDetails}
+            addListItemChild={this.addListItemChild}
+          />}
+
           <button className={this.state.rightAsideOpen ? "toggle_right_open" : "toggle_right_closed"} onClick={() => this.toggleAside("right")}></button>
         </article>
       </div>
@@ -151,19 +157,48 @@ export default class MainLayout extends React.Component{
     }
 
     if(detailedItem){
+      detailedItem = this.state.listItems.filter(item => item.title === detailedItem);
+      detailedItem = detailedItem[0];
+      
       const details = {
         active: true,
-        title: detailedItem,
-        description: "",
-        rank: 0,
-        time: 0,
-        difficulty: 0,
-        urgency: 0,
-        children: []
+        title: detailedItem.title,
+        description: detailedItem.description,
+        rank: detailedItem.rank,
+        time: detailedItem.time,
+        difficulty: detailedItem.difficulty,
+        urgency: detailedItem.urgency,
+        children: detailedItem.children
       }
 
       this.setState(() => ({listItemDetails: details}));
     }
+  }
+
+  addListItemChild(e, parent){
+    e.preventDefault();
+
+    this.setState(prevState => {
+      let listItems = prevState.listItems;
+      let index = 0;
+
+      let children = listItems.filter((item, c) => {
+        if(item.title === parent){
+          index = c;
+          return true;
+        }
+      });
+
+      children = children[0].children;
+      
+      const newItem = e.target.childTitle.value;
+
+      if(!!newItem && !!children && children.indexOf(newItem) === -1){
+        children.push(newItem);
+        listItems[index].children = children;
+        return {listItems};
+      }
+    });
   }
 
   toggleAside(side){
