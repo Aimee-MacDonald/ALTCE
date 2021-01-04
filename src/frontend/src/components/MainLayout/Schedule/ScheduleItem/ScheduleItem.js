@@ -13,6 +13,7 @@ const ScheduleItem = props => (
     
     <p>{props.details.description}</p>
     <p>{props.details.time}</p>
+    <button>-</button>
   </li>
 );
 

@@ -33,6 +33,7 @@ export default class MainLayout extends React.Component{
     this.showListItemDetails = this.showListItemDetails.bind(this);
     this.addListItemChild = this.addListItemChild.bind(this);
     this.removeListItemChild = this.removeListItemChild.bind(this);
+    this.scheduleItem = this.scheduleItem.bind(this);
   }
 
   render(){
@@ -82,6 +83,7 @@ export default class MainLayout extends React.Component{
 
       if(newState){
         this.setState(() => ({listItems: newState.listItems}));
+        this.setState(() => ({schedule: newState.schedule}));
       }
     } catch(error){
       console.log("A wild Error Appeared!");
@@ -212,8 +214,23 @@ export default class MainLayout extends React.Component{
     });
   }
 
-  scheduleItem(){
-    console.log("Schedule Item");
+  scheduleItem(title){
+    this.setState(prevState => {
+      let schedule = prevState.schedule;
+
+      let time = schedule.length;
+      if(time < 10) time = `0${time}`;
+      time = `${time}:00`;
+
+      schedule.push({
+        productivityState: false,
+        productivityStateChanged: false,
+        description: title,
+        time: time
+      });
+
+      return {schedule};
+    });
   }
 
   toggleAside(side){
