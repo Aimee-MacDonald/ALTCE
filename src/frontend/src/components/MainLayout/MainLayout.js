@@ -32,6 +32,7 @@ export default class MainLayout extends React.Component{
     this.removeListItem = this.removeListItem.bind(this);
     this.showListItemDetails = this.showListItemDetails.bind(this);
     this.addListItemChild = this.addListItemChild.bind(this);
+    this.removeListItemChild = this.removeListItemChild.bind(this);
   }
 
   render(){
@@ -65,6 +66,8 @@ export default class MainLayout extends React.Component{
           {this.state.listItemDetails.active && <ListItemDetails
             details={this.state.listItemDetails}
             addListItemChild={this.addListItemChild}
+            removeListItemChild={this.removeListItemChild}
+            scheduleItem={this.scheduleItem}
           />}
 
           <button className={this.state.rightAsideOpen ? "toggle_right_open" : "toggle_right_closed"} onClick={() => this.toggleAside("right")}></button>
@@ -177,6 +180,40 @@ export default class MainLayout extends React.Component{
         return {listItems};
       }
     });
+  }
+
+  removeListItemChild(parent, child){
+    let index = 0;
+
+    this.setState(prevState => {
+      let parentElement = prevState.listItems;
+      parentElement = parentElement.filter((item, c) => {
+        index = c;
+        return item.title === parent;
+      });
+
+      parentElement = parentElement[0];
+      
+      let children = parentElement.children;
+      children = children.filter(item => item !== child);
+      
+      parentElement.children = children;
+      
+      let listItems = prevState.listItems;
+      listItems[index] = parentElement;
+
+      let listItemDetails = prevState.listItemDetails;
+      listItemDetails.children = children;
+      
+      return {
+        listItems: listItems,
+        listItemDetails: listItemDetails
+      };
+    });
+  }
+
+  scheduleItem(){
+    console.log("Schedule Item");
   }
 
   toggleAside(side){

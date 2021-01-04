@@ -42,7 +42,11 @@ const ListItemDetails = props => (
 
       <ul>
         {props.details.children && props.details.children.map((child, index) => (
-          <li key={`child_${index}`}>{child}</li>
+          <li key={`child_${index}`}>
+            <p>{child}</p>
+            <button onClick={props.scheduleItem}>+</button>
+            <button onClick={() => props.removeListItemChild(props.details.title, child)}>-</button>
+          </li>
         ))}
       </ul>
     </div>
