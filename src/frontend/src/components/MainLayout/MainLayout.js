@@ -221,15 +221,19 @@ export default class MainLayout extends React.Component{
       let time = schedule.length;
       if(time < 10) time = `0${time}`;
       time = `${time}:00`;
+      
+      let filtered = schedule.filter(item => item.description === title);
 
-      schedule.push({
-        productivityState: false,
-        productivityStateChanged: false,
-        description: title,
-        time: time
-      });
+      if(filtered.length === 0){
+        schedule.push({
+          productivityState: false,
+          productivityStateChanged: false,
+          description: title,
+          time: time
+        });
 
-      return {schedule};
+        return {schedule};
+      }
     });
   }
 
