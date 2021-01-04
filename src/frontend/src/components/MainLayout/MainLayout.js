@@ -54,6 +54,7 @@ export default class MainLayout extends React.Component{
           <aside className={this.state.rightAsideOpen ? "open_aside" : "closed_aside"}>
             <Schedule
               schedule={this.state.schedule}
+              vote={this.voteScheduleItem}
              />
           </aside>
         </nav>
@@ -184,5 +185,11 @@ export default class MainLayout extends React.Component{
     } else if(side === "right"){
       this.setState(prevState => ({rightAsideOpen: !prevState.rightAsideOpen}));
     }
+  }
+
+  voteScheduleItem(item, vote){
+    console.log("Vote Schedule Item");
+    console.log(item);
+    console.log(vote);
   }
 }

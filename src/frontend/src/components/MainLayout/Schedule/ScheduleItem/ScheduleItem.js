@@ -4,15 +4,15 @@ import "./ScheduleItem.sass";
 
 const ScheduleItem = props => (
   <li id="ScheduleItem">
-    {!props.productivityStateChanged &&
+    {!props.details.productivityStateChanged &&
       <div className="vote">
-        <button className="up"></button>
-        <button className="down"></button>
+        <button className="up" onClick={() => props.vote(props.details.description, true)}></button>
+        <button className="down" onClick={() => props.vote(props.details.description, false)}></button>
       </div>
     }
     
-    <p>{props.description}</p>
-    <p>{props.time}</p>
+    <p>{props.details.description}</p>
+    <p>{props.details.time}</p>
   </li>
 );
 
