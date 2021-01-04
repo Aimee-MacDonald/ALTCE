@@ -35,6 +35,7 @@ export default class MainLayout extends React.Component{
     this.removeListItemChild = this.removeListItemChild.bind(this);
     this.scheduleItem = this.scheduleItem.bind(this);
     this.removeScheduleItem = this.removeScheduleItem.bind(this);
+    this.voteScheduleItem = this.voteScheduleItem.bind(this);
   }
 
   render(){
@@ -177,6 +178,7 @@ export default class MainLayout extends React.Component{
       children = children[0].children;
       
       const newItem = e.target.childTitle.value;
+      e.target.childTitle.value = "";
 
       if(!!newItem && !!children && children.indexOf(newItem) === -1){
         children.push(newItem);
@@ -252,8 +254,23 @@ export default class MainLayout extends React.Component{
   }
 
   voteScheduleItem(item, vote){
-    console.log("Vote Schedule Item");
-    console.log(item);
-    console.log(vote);
+    this.setState(prevState => {
+      let schedule = prevState.schedule;
+      let index = -1;
+
+      schedule.filter((sce, c) => {
+        if(sce.description === item){
+          index = c;
+          return true;
+        }
+      });
+
+      if(index != -1){
+        schedule[index].productivityStateChanged = true;
+        schedule[index].productivityState = vote;
+      }
+
+      return {schedule};
+    });
   }
 }
