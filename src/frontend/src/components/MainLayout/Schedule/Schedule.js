@@ -11,6 +11,7 @@ const Schedule = props => (
         key={`scheduleItem_${scheduleItem.time}`}
         details={scheduleItem}
         vote={props.vote}
+        remove={props.removeItem}
       />
     ))}
   </ul>

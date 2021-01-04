@@ -34,6 +34,7 @@ export default class MainLayout extends React.Component{
     this.addListItemChild = this.addListItemChild.bind(this);
     this.removeListItemChild = this.removeListItemChild.bind(this);
     this.scheduleItem = this.scheduleItem.bind(this);
+    this.removeScheduleItem = this.removeScheduleItem.bind(this);
   }
 
   render(){
@@ -57,6 +58,7 @@ export default class MainLayout extends React.Component{
             <Schedule
               schedule={this.state.schedule}
               vote={this.voteScheduleItem}
+              removeItem={this.removeScheduleItem}
              />
           </aside>
         </nav>
@@ -221,7 +223,7 @@ export default class MainLayout extends React.Component{
       let time = schedule.length;
       if(time < 10) time = `0${time}`;
       time = `${time}:00`;
-      
+
       let filtered = schedule.filter(item => item.description === title);
 
       if(filtered.length === 0){
@@ -235,6 +237,10 @@ export default class MainLayout extends React.Component{
         return {schedule};
       }
     });
+  }
+
+  removeScheduleItem(itemName){
+    this.setState(prevState => ({schedule: prevState.schedule.filter(item => item.description !== itemName)}));
   }
 
   toggleAside(side){
