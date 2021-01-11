@@ -36,13 +36,14 @@ export default class MainLayout extends React.Component{
     this.scheduleItem = this.scheduleItem.bind(this);
     this.removeScheduleItem = this.removeScheduleItem.bind(this);
     this.voteScheduleItem = this.voteScheduleItem.bind(this);
+    this.clearArticle = this.clearArticle.bind(this);
   }
 
   render(){
     return(
       <div id="MainLayout">
         <header>
-          <Header />
+          <Header clear={this.clearArticle} />
         </header>
 
         <nav>
@@ -271,6 +272,14 @@ export default class MainLayout extends React.Component{
       }
 
       return {schedule};
+    });
+  }
+
+  clearArticle(){
+    this.setState(prevState => {
+      let listItemDetails = prevState.listItemDetails;
+      listItemDetails.active = false;
+      return {listItemDetails};
     });
   }
 }
